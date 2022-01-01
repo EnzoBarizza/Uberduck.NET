@@ -5,7 +5,7 @@
     /// </summary>
     public class UberduckKeys
     {
-        internal string PublicKey { get; private set; }
+        public string PublicKey { get; private set; }
         internal string SecretKey { get; private set; }
 
         /// <summary>

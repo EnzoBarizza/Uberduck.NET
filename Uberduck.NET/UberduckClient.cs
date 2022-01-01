@@ -12,8 +12,8 @@ namespace Uberduck.NET
     /// </summary>
     public class UberduckClient
     {
-        private HttpClient _httpClient;
-        public UberduckKeys Keys;
+        private HttpClient _httpClient { get; set; }
+        public UberduckKeys Keys { get; private set; }
 
         /// <summary>
         /// Instantiate a new Uberduck Client

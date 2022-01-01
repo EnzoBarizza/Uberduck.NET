@@ -7,6 +7,8 @@ namespace Uberduck.NET.Models
     /// </summary>
     public sealed class UberduckFinalResult
     {
+        internal UberduckFinalResult() { }
+
         /// <summary>
         /// When the audio started generating
         /// </summary>

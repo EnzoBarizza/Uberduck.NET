@@ -10,16 +10,17 @@ using Uberduck.NET.Keys;
 /// </summary>
 namespace Uberduck.NET.Models
 {
-    public class UberduckGeneratedResult
+    public sealed class UberduckGeneratedResult
     {
-        private HttpClient _httpClient = new HttpClient();
-        internal UberduckKeys Keys { get; set; }
+        private HttpClient _httpClient { get; set; }
+        public UberduckKeys Keys { get; set; }
 
         [JsonProperty("uuid")]
-        internal string UUID { get; set; } = string.Empty;
+        public string UUID { get; set; } = string.Empty;
 
         internal UberduckGeneratedResult(UberduckKeys keys)
         {
+            _httpClient = new HttpClient();
             Keys = keys;
 
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(
