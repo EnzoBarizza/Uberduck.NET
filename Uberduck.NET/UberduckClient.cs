@@ -3,6 +3,7 @@ using System.Net.Http.Headers;
 using Uberduck.NET.Keys;
 using System.Text;
 using Uberduck.NET.Models;
+using Uberduck.NET.Exceptions;
 
 namespace Uberduck.NET
 {
@@ -33,8 +34,10 @@ namespace Uberduck.NET
         /// </summary>
         /// <param name="text">The text to speak</param>
         /// <param name="voice">Which voice are you going to use (found the voices on the offical website)</param>
-        /// <returns>A UberduckGeneratedResult Object</returns>
-        /// <exception cref="HttpRequestException"></exception>
+        /// <returns>A UberduckGeneratedResult Object</returns
+        /// <exception cref="UberduckUnauthorizedException">Throws when Uberduck Credentials are incorrect</exception>
+        /// <exception cref="UberduckBadRequestException">Throws when the voice are incorrect</exception>
+        /// <exception cref="HttpRequestException">Throws when occurs a unknow error</exception>
         public async Task<UberduckGeneratedResult> GenerateVoiceAsync(string text, string voice)
         {
             var content = new StringContent($"{{\"speech\":\"{text}\",\"voice\":\"{voice}\"}}", Encoding.UTF8, "application/json");
@@ -42,9 +45,11 @@ namespace Uberduck.NET
             var result = await _httpClient.PostAsync("https://api.uberduck.ai/speak", content);
             string resultContent = await result.Content.ReadAsStringAsync();
 
-            if (result.StatusCode.ToString().ToLower() == "unauthorized") throw new HttpRequestException("Incorrect Credentials");
-            if (result.StatusCode.ToString().ToLower() == "badrequest") throw new HttpRequestException("The provided voice doesn't exists");
-            if (result.StatusCode.ToString().ToLower() != "ok") throw new HttpRequestException($"Unkown error API Error Message {resultContent}");
+            if (result.StatusCode.ToString().ToLower() == "unauthorized") throw new UberduckUnauthorizedException("Incorrect Credentials",
+                new HttpRequestException($"Raw Content: {resultContent}"));
+            if (result.StatusCode.ToString().ToLower() == "badrequest") throw new UberduckBadRequestException("The provided voice doesn't exist",
+                new HttpRequestException($"Raw Content: {resultContent}"));
+            if (result.StatusCode.ToString().ToLower() != "ok") throw new HttpRequestException($"Unkown error, API Error Message {resultContent}");
 
             var json = new UberduckGeneratedResult(Keys);
 
