@@ -4,10 +4,8 @@ using Uberduck.NET.Models;
 using Uberduck.NET.Keys;
 
 UberduckClient client = new UberduckClient(
-    new UberduckKeys(publicKey:"YOUR_API_PUBLIC_KEY", secretKey:"YOUR_API_SECRET_KEY"));
+    new UberduckKeys(publicKey:"YOUR_PUBLIC_API_KEY", secretKey:"YOUR_SECRET_API_KEY"));
 
-UberduckGeneratedResult generatedResult = await client.GenerateVoiceAsync("This is just a test", "eminem");
+UberduckGeneratedResult generatedResult = await client.GenerateVoiceAsync("Hello World from C Sharp", "eminem");
 
-var audio = await generatedResult.GetAudioAsync(untilFinal:true);
-
-Console.WriteLine(audio);
+await generatedResult.SaveAudioFileAsync();

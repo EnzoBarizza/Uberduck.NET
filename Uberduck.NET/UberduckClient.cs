@@ -13,6 +13,9 @@ namespace Uberduck.NET
     public class UberduckClient
     {
         private HttpClient _httpClient { get; set; }
+        /// <summary>
+        /// The object with your Uberduck API Keys
+        /// </summary>
         public UberduckKeys Keys { get; private set; }
 
         /// <summary>
@@ -34,7 +37,7 @@ namespace Uberduck.NET
         /// </summary>
         /// <param name="text">The text to speak</param>
         /// <param name="voice">Which voice are you going to use (found the voices on the offical website)</param>
-        /// <returns>A UberduckGeneratedResult Object</returns
+        /// <returns>A UberduckGeneratedResult Object</returns>
         /// <exception cref="UberduckUnauthorizedException">Throws when Uberduck Credentials are incorrect</exception>
         /// <exception cref="UberduckBadRequestException">Throws when the voice are incorrect</exception>
         /// <exception cref="HttpRequestException">Throws when occurs a unknow error</exception>

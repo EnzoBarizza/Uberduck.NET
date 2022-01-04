@@ -54,9 +54,11 @@ public string UUID { get; set; };
 
 ### Methods
 ```c#
-public async Task<string> GetAudioAsync(bool untilFinal = false) { }
+public async Task<string> GetAudioLinkAsync(bool untilFinal = false) { }
 public async Task<string> GetRawAudioData() { }
 public async Task<UberduckFinalResult> GetDeserializedAudioData(bool untilFinal = false) { }
+public async Task SaveAudioFileAsync(string fileName = "audio", string path = "./") { }
+public async Task<Stream> GetAudioStreamAsync() { }
 ```
 
 ## UberduckFinalResult

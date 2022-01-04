@@ -5,6 +5,9 @@
     /// </summary>
     public class UberduckKeys
     {
+        /// <summary>
+        /// Your API Public Key
+        /// </summary>
         public string PublicKey { get; private set; }
         internal string SecretKey { get; private set; }
 
