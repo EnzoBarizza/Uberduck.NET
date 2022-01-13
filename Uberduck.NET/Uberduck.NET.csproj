@@ -14,7 +14,7 @@
     <PackageRequireLicenseAcceptance>False</PackageRequireLicenseAcceptance>
     <PackageTags>wrapper;api;uberduck;uber;duck;uberduckapi;.net;uberduck.net;uberduckwrapper;uberduck.api</PackageTags>
     <PackageIcon>logo.jpg</PackageIcon>
-    <Version>1.0.2</Version>
+    <Version>1.1.0</Version>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <SignAssembly>False</SignAssembly>
   </PropertyGroup>
